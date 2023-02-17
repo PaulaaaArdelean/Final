@@ -1,0 +1,60 @@
+﻿@page
+@model Final.Pages.Imprumuturi.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Imprumut[0].Clienta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imprumut[0].Rochie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.Imprumut[0].Rochie.Designer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imprumut[0].DataImpumutare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imprumut[0].DataReturnare)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Imprumut) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clienta.NumeIntreg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rochie.Denumire)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rochie.Designer.NumeDesigner)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataImpumutare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataReturnare)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
