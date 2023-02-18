@@ -8,7 +8,10 @@ namespace Final.Models
     public class Rochie
     {
         public int ID { get; set; }
+
         [Display(Name = "Denumirea rochiei")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Denumirea rochiei trebuie sa fie inceapa cu majuscula")]
+
         public string Denumire { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]

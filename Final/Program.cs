@@ -2,7 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Final.Data;
 using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+   policy.RequireRole("Admin"));
+});
+
+
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
@@ -10,6 +19,10 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeFolder("/Rochii");
     options.Conventions.AllowAnonymousToPage("/Rochii/Index");
     options.Conventions.AllowAnonymousToPage("/Rochii/Details");
+    options.Conventions.AuthorizeFolder("/Cliente", "AdminPolicy");
+
+
+
 });
 builder.Services.AddDbContext<FinalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FinalContext") ?? throw new InvalidOperationException("Connection string 'FinalContext' not found.")));

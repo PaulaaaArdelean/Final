@@ -8,9 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Final.Data;
 using Final.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Final.Pages.Rochii
 {
+    [Authorize(Roles = "Admin")]
+
     public class EditModel : AccesoriuAlesPageModel
     {
         private readonly Final.Data.FinalContext _context;
