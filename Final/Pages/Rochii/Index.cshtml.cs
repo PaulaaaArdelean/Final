@@ -25,16 +25,18 @@ namespace Final.Pages.Rochii
         public int RochieID { get; set; }
         public int AccesoriuID { get; set; }
        
-        public string DenumireSort { get; set; }
-        public string PretSort { get; set; }
+       // public string DenumireSort { get; set; }
+        public string PretCresc { get; set; }
+        public string PretDesc { get; set; }
         public string CurrentFilter { get; set; }
         
         public async Task OnGetAsync(int? id, int? categoryID, string sortOrder, string searchString)
         {
             RochieD = new RochieData();
 
-            DenumireSort = String.IsNullOrEmpty(sortOrder) ? "denumire_desc" : "";
-            PretSort = String.IsNullOrEmpty(sortOrder) ? "pret_desc" : "";
+           PretCresc = String.IsNullOrEmpty(sortOrder) ? "pret_cresc" : "";
+            PretDesc = String.IsNullOrEmpty(sortOrder) ? "pret_desc" : "";
+          
             CurrentFilter = searchString;
 
             RochieD.Rochii = await _context.Rochie
@@ -44,7 +46,7 @@ namespace Final.Pages.Rochii
             .Include(b => b.AccesoriiRochii)
             .ThenInclude(b => b.Accesoriu)
             .AsNoTracking()
-            .OrderBy(b => b.Denumire)
+            //.OrderBy(b => b.Pret)
             .ToListAsync();
 
 
@@ -65,10 +67,10 @@ namespace Final.Pages.Rochii
 
                 switch (sortOrder)
                 {
-                    case "denumire_sort":
-                        RochieD.Rochii = RochieD.Rochii.OrderByDescending(s =>
-                       s.Denumire);
-                        break;
+                    case "pret_cresc":
+                       RochieD.Rochii = RochieD.Rochii.OrderBy(s =>
+                     s.Pret);
+                      break;
                     case "pret_desc":
                         RochieD.Rochii = RochieD.Rochii.OrderByDescending(s =>
                        s.Pret);
