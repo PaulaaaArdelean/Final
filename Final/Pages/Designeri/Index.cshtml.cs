@@ -30,15 +30,15 @@ namespace Final.Pages.Designeri
             DesignerData = new DesignerIndexData();
             DesignerData.Designeri = await _context.Designer
             .Include(i => i.Rochii)
-            // .ThenInclude(c => c.Author)
+            // .ThenInclude(c => c.Designer)
             .OrderBy(i => i.NumeDesigner)
             .ToListAsync();
             if (id != null)
             {
                 DesignerID = id.Value;
-                Designer publisher = DesignerData.Designeri
+                Designer designer = DesignerData.Designeri
                 .Where(i => i.ID == id.Value).Single();
-                DesignerData.Rochii = publisher.Rochii;
+                DesignerData.Rochii = designer.Rochii;
             }
 
         }

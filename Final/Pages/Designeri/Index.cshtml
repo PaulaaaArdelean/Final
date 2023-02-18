@@ -8,13 +8,14 @@
 <h1>Designeri</h1>
 
 <p>
-    <a asp-page="Create">Adauga un designer nou</a>
+    <a asp-page="Create">+Designer nou</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Numele designerului
+                <!-- @Html.DisplayNameFor(model => model.Designer[0].NumeDesigner)-->
+                Numele Designerului
             </th>
             <th></th>
         </tr>
@@ -33,9 +34,9 @@
                 </td>
                 <td>
                     <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Editează</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Vezi Detalii</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Șterge</a>
                 </td>
             </tr>
         }
@@ -43,7 +44,7 @@
 </table>
 @if (Model.DesignerData.Rochii != null)
 {
-    <h3>Rochii create de un designer</h3>
+    <h3>Rochii create de un designer selectat</h3>
     <table class="table">
 
         @foreach (var item in Model.DesignerData.Designeri)
