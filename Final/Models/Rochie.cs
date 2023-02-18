@@ -10,7 +10,7 @@ namespace Final.Models
         public int ID { get; set; }
 
         [Display(Name = "Denumirea rochiei")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Denumirea rochiei trebuie sa inceapa cu majuscula")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Denumirea rochiei trebuie sa inceapa cu majuscula si poate contine doar litere")]
 
         public string Denumire { get; set; }
 
