@@ -81,6 +81,28 @@ namespace Final.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            ///  [Required]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria")]
+            [Display(Name = "NumeClienta")]
+            public string NumeClienta { get; set; }
+
+
+            [Required]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria")]
+            [Display(Name = "PrenumeClienta")]
+            public string PrenumeClienta { get; set; }
+
+
+            [Required]
+            [StringLength(70)]
+            [Display(Name = "Adresa")]
+            public string Adresa { get; set; }
+
+            [Required]
+            [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
+            [Display(Name = "Telefon")]
+            public string Telefon { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -127,6 +149,10 @@ namespace Final.Areas.Identity.Pages.Account
             var result = await _userManager.CreateAsync(user,
            Input.Password);
             Clienta.Email = Input.Email;
+            Clienta.NumeClienta = Input.NumeClienta;
+            Clienta.PrenumeClienta = Input.PrenumeClienta;
+            Clienta.Adresa = Input.Adresa;
+            Clienta.Telefon = Input.Telefon;
             _context.Clienta.Add(Clienta);
             await _context.SaveChangesAsync();
             if (result.Succeeded)
@@ -150,9 +176,7 @@ namespace Final.Areas.Identity.Pages.Account
                    returnUrl = returnUrl
                },
                 protocol: Request.Scheme);
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm  your email",
-               
-                $"Please confirm your account by <a href = '{HtmlEncoder.Default.Encode(callbackUrl)}' > clicking here </ a >.");
+                await _emailSender.SendEmailAsync(Input.Email, "Confirmare email", "Vă rugăm să vă confirmați contul <a href = '{HtmlEncoder.Default.Encode(callbackUrl)}' > apăsând click aici  </ a >.");
            
 
 
