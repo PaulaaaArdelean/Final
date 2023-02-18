@@ -10,6 +10,7 @@ using Final.Models;
 
 namespace Final.Pages.Imprumuturi
 {
+
     public class IndexModel : PageModel
     {
         private readonly Final.Data.FinalContext _context;

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Rochii de mireasa de inchiriat</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -13,11 +13,11 @@
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Cautati rochita dupa denumire
+            Cautati rochita dupa denumire:
             <!--sau numele designerului:   -->
 
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <input type="submit" value="Cauta" class="btn btn-primary" /> |
             <a asp-page="./Index">Back to full List</a>
         </p>
     </div>
