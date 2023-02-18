@@ -24,6 +24,7 @@ namespace Final.Pages.Imprumuturi
         {
             var listaRochii = _context.Rochie
                         .Include(b => b.Designer)
+                       
                         .Select(x => new
                         {
                             x.ID,

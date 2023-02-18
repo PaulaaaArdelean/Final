@@ -27,7 +27,7 @@ namespace Final.Pages.Imprumuturi
             {
                 Imprumut = await _context.Imprumut
                 .Include(i => i.Rochie)
-                .ThenInclude(i => i.Designer)
+                    .ThenInclude(i => i.Designer)
                 .Include(i => i.Clienta)
                 .ToListAsync();
             }

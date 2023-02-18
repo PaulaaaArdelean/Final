@@ -5,7 +5,12 @@ using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Rochii");
+    options.Conventions.AllowAnonymousToPage("/Rochii/Index");
+    options.Conventions.AllowAnonymousToPage("/Rochii/Details");
+});
 builder.Services.AddDbContext<FinalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FinalContext") ?? throw new InvalidOperationException("Connection string 'FinalContext' not found.")));
 
@@ -14,6 +19,7 @@ builder.Services.AddDbContext<LibraryIdentityContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("FinalContext") ?? throw new InvalidOperationException("Connection string 'FinalContext' not found.")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 
 var app = builder.Build();
