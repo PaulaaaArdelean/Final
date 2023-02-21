@@ -11,9 +11,12 @@ namespace Final.Models
         public Rochie? Rochie { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name ="Data imprumutarii")]
         public DateTime DataImpumutare { get; set; }
 
         [DataType(DataType.Date)]
+        [Display(Name = "Data returnarii")]
+
         public DateTime DataReturnare { get; set; }
     }
 }

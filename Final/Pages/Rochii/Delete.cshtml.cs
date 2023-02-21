@@ -33,7 +33,13 @@ namespace Final.Pages.Rochii
                 return NotFound();
             }
 
-            var rochie = await _context.Rochie.FirstOrDefaultAsync(m => m.ID == id);
+            var rochie = await _context.Rochie
+                  .Include(b => b.Designer)
+            .Include(b => b.Categorie)
+            .Include(b => b.Marime)
+            .Include(b => b.AccesoriiRochii)
+            .ThenInclude(b => b.Accesoriu)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (rochie == null)
             {

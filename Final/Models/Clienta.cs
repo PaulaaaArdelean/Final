@@ -9,11 +9,15 @@ namespace Final.Models
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria) si poate contine doar litere")]
         [StringLength(30, MinimumLength = 3, ErrorMessage ="Acest camp trebuie sa contina minim 3 caractere")]
+        [Display(Name = "Numele clientei")]
+
         public string? NumeClienta { get; set; }
 
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Prenumele trebuie sa inceapa cu majuscula si poate contine doar litere")]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Acest camp trebuie sa contina minim 3 caractere")]
+        [Display(Name = "Prenumele clientei")]
+
         public string? PrenumeClienta { get; set; }
 
         [StringLength(70, ErrorMessage ="Acest camp poate contine maxim 70 caractere")]
