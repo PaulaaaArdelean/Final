@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Final.Data;
 using Final.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Final.Pages.Designeri
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly Final.Data.FinalContext _context;

@@ -82,13 +82,13 @@ namespace Final.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             ///  [Required]
-            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria")]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria si poate cotine doar litere")]
             [Display(Name = "NumeClienta")]
             public string NumeClienta { get; set; }
 
 
             [Required]
-            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria")]
+            [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Numele trebuie sa inceapa cu majuscula (ex.Ana sau Ana Maria sau AnaMaria si poate contine doar litere")]
             [Display(Name = "PrenumeClienta")]
             public string PrenumeClienta { get; set; }
 

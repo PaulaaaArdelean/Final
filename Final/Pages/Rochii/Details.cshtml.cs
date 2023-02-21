@@ -28,7 +28,13 @@ namespace Final.Pages.Rochii
                 return NotFound();
             }
 
-            var rochie = await _context.Rochie.FirstOrDefaultAsync(m => m.ID == id);
+            var rochie = await _context.Rochie
+                .Include(r=>r.AccesoriiRochii).ThenInclude(b => b.Accesoriu)
+                .Include(r=>r.Categorie)
+                .Include(r => r.Designer)
+                .Include(r => r.Marime)
+
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (rochie == null)
             {
                 return NotFound();

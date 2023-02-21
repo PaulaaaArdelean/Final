@@ -25,7 +25,7 @@ namespace Final.Pages.Rochii
         public int RochieID { get; set; }
         public int AccesoriuID { get; set; }
        
-       // public string DenumireSort { get; set; }
+       public string DenumireSort { get; set; }
         public string PretCresc { get; set; }
         public string PretDesc { get; set; }
         public string CurrentFilter { get; set; }
@@ -34,10 +34,11 @@ namespace Final.Pages.Rochii
         {
             RochieD = new RochieData();
 
-           PretCresc = String.IsNullOrEmpty(sortOrder) ? "pret_cresc" : "";
+            PretCresc = String.IsNullOrEmpty(sortOrder) ? "pret_cresc" : "";
             PretDesc = String.IsNullOrEmpty(sortOrder) ? "pret_desc" : "";
-          
+            DenumireSort = String.IsNullOrEmpty(sortOrder) ? "denumire_desc" : "";
             CurrentFilter = searchString;
+
 
             RochieD.Rochii = await _context.Rochie
             .Include(b => b.Designer)
@@ -46,18 +47,24 @@ namespace Final.Pages.Rochii
             .Include(b => b.AccesoriiRochii)
             .ThenInclude(b => b.Accesoriu)
             .AsNoTracking()
-            //.OrderBy(b => b.Pret)
+            .OrderBy(b => b.Denumire)
             .ToListAsync();
 
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                RochieD.Rochii = RochieD.Rochii.Where(s => s.Denumire.Contains(searchString)
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        RochieD.Rochii = RochieD.Rochii.Where(s => s.Denumire.Contains(searchString)
+                                              
+                        || s.Marime.Marimea.Contains(searchString)
+                        ||s.Categorie.Categoria.Contains(searchString)
+                       || s.Designer.NumeDesigner.Contains(searchString)
+                      || s.Denumire.Contains(searchString));
+                    }
 
-              // || s.Designer.NumeDesigner.Contains(searchString)
-              || s.Denumire.Contains(searchString));
 
-                if (id != null)
+         
+
+            if (id != null)
                 {
                     RochieID = id.Value;
                     Rochie book = RochieD.Rochii
@@ -67,31 +74,37 @@ namespace Final.Pages.Rochii
 
                 switch (sortOrder)
                 {
-                    case "pret_cresc":
-                       RochieD.Rochii = RochieD.Rochii.OrderBy(s =>
-                     s.Pret);
-                      break;
-                    case "pret_desc":
-                        RochieD.Rochii = RochieD.Rochii.OrderByDescending(s =>
-                       s.Pret);
+                    case "denumire_desc":
+                        RochieD.Rochii = RochieD.Rochii.OrderByDescending(s => s.Denumire);
                         break;
 
-                }
+                    case "pret_desc":
+                        RochieD.Rochii = RochieD.Rochii.OrderByDescending(s => s.Pret);
+                        break;
+                     case "pret_cresc":
+                    RochieD.Rochii = RochieD.Rochii.OrderBy(s =>
+                    s.Pret);
+                       break;
 
-
-
-                //public async Task OnGetAsync()
-                //     {
-                //       if (_context.Rochie != null)
-                //     {
-                //       Rochie = await _context.Rochie
-                //         .Include(r=>r.Designer)
-                //        .Include(r => r.Marime)
-                //      .Include(r=>r.Categorie)
-                //   .ToListAsync();
-                //}
-                //}
             }
+
+            // case "pret_cresc":
+            //RochieD.Rochii = RochieD.Rochii.OrderBy(s =>
+            //s.Pret);
+            //   break;
+
+            //public async Task OnGetAsync()
+            //     {
+            //       if (_context.Rochie != null)
+            //     {
+            //       Rochie = await _context.Rochie
+            //         .Include(r=>r.Designer)
+            //        .Include(r => r.Marime)
+            //      .Include(r=>r.Categorie)
+            //   .ToListAsync();
+            //}
+            //}
+
         }
     }
 }

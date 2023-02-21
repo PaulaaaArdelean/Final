@@ -13,28 +13,34 @@
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Cautati rochita dupa denumire:
-            <!--sau numele designerului:   -->
+            Cautati rochita dupa denumire, categorie, designer sau marime:
+          
 
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
             <input type="submit" value="Cauta" class="btn btn-primary" /> |
             <a asp-page="./Index">Back to full List</a>
         </p>
+        
+        
     </div>
 </form>
-<!---->
-<a asp-page="./Index" asp-route-sortOrder="@Model.PretDesc"> Sortare descrescatoare in functie de pret  </a>
 
-<a asp-page="./Index" asp-route-sortOrder="@Model.PretCresc"> Sortare crescatoare in functie de pret  </a>
--->
+
+
+<a asp-page="./Index" asp-route-sortOrder="@Model.PretCresc"> Sortati crescator in functie de pret  </a> </br>
+<a asp-page="./Index" asp-route-sortOrder="@Model.PretDesc"> Sortati descrescator in functie de pret </a></br>
+<a asp-page="./Index" asp-route-sortOrder="@Model.DenumireSort"> Sortati dupa denumire  </a>
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Rochie[0].Denumire)
+              @Html.DisplayNameFor(model => model.Rochie[0].Denumire)  
+               
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rochie[0].Pret)
+               @Html.DisplayNameFor(model => model.Rochie[0].Pret) 
             </th>
            <th>
                 <!-- @Html.DisplayNameFor(model => model.Rochie[0].Designer.NumeDesigner)  -->

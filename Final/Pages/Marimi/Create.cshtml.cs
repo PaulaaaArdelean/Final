@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Final.Data;
 using Final.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Final.Pages.Marimi
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly Final.Data.FinalContext _context;

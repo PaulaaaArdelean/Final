@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Final.Data;
 using Final.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Final.Pages.Cliente
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly Final.Data.FinalContext _context;

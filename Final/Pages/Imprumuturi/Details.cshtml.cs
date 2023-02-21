@@ -28,7 +28,11 @@ namespace Final.Pages.Imprumuturi
                 return NotFound();
             }
 
-            var imprumut = await _context.Imprumut.FirstOrDefaultAsync(m => m.ID == id);
+            var imprumut = await _context.Imprumut
+                 .Include(i => i.Rochie)
+                    .ThenInclude(i => i.Designer)
+                .Include(i => i.Clienta)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (imprumut == null)
             {
                 return NotFound();
