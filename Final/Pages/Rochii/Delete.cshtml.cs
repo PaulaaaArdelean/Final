@@ -57,6 +57,9 @@ namespace Final.Pages.Rochii
             if (rochie != null)
             {
                 Rochie = rochie;
+                var imprumuturi = _context.Imprumut.Where(i => i.RochieID == rochie.ID);
+                _context.Imprumut.RemoveRange(imprumuturi);
+
                 _context.Rochie.Remove(Rochie);
                 await _context.SaveChangesAsync();
             }
