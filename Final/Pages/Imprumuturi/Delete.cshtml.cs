@@ -12,7 +12,6 @@ using System.Data;
 
 namespace Final.Pages.Imprumuturi
 {
-    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly Final.Data.FinalContext _context;

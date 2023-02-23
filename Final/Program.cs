@@ -21,6 +21,14 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AllowAnonymousToPage("/Rochii/Details");
     options.Conventions.AuthorizeFolder("/Cliente", "AdminPolicy");
     //  options.Conventions.AuthorizeFolder("/Imprumuturi", "AdminPolicy");
+    //options.Conventions.AllowAnonymousToPage("/Imprumuturi/Create");
+    //options.Conventions.AllowAnonymousToPage("/Imprumuturi/Details");
+
+    options.Conventions.AuthorizeFolder("/Imprumuturi");
+  //  options.Conventions.AllowAnonymousToPage("/Imprumuturi/Index");
+
+
+
 
 
 

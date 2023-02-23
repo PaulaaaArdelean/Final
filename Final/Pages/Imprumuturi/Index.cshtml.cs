@@ -12,7 +12,7 @@ using System.Data;
 
 namespace Final.Pages.Imprumuturi
 {
-    [Authorize(Roles = "Admin")]
+    
 
     public class IndexModel : PageModel
     {
